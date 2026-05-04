@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>移送費の重要ポイント｜社労士試験対策</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --surface: #fffdf7;
+    --surface2: #f0ebe0;
+    --ink: #1a1408;
+    --ink-muted: #5a4f3a;
+    --kenpo: #1a5276;
+    --kokuho: #1e8449;
+    --rousai: #7d3c98;
+    --accent: #b7860d;
+    --border: #d4c9a8;
+    --red: #c0392b;
+    --green: #1e8449;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(22px, 5vw, 34px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  /* セクション */
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 16px;
+  }
+
+  /* 大きな比較カード */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  @media (max-width: 600px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  .ccard {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 20px;
+    border-top: 3px solid;
+  }
+
+  .ccard.kenpo { border-color: var(--kenpo); }
+  .ccard.kokuho { border-color: var(--kokuho); }
+  .ccard.rousai { border-color: var(--rousai); }
+
+  .ccard-law {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .kenpo .ccard-law { color: var(--kenpo); }
+  .kokuho .ccard-law { color: var(--kokuho); }
+  .rousai .ccard-law { color: var(--rousai); }
+
+  .ccard-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .ccard-rows { list-style: none; font-size: 12px; line-height: 1.0; }
+
+  .ccard-rows li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+
+  .ccard-rows li:last-child { border-bottom: none; }
+
+  .row-key {
+    color: var(--ink-muted);
+    flex-shrink: 0;
+    font-size: 11px;
+    padding-top: 1px;
+  }
+
+  .row-val {
+    text-align: right;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .ok { color: var(--green); }
+  .ng { color: var(--red); }
+  .warn { color: var(--accent); }
+
+  /* 核心テーブル：療養費に含まれるか */
+  .core-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 13px;
+    margin-bottom: 36px;
+  }
+
+  .core-table th {
+    padding: 13px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .core-table th:first-child { background: var(--surface2); color: var(--ink-muted); text-align: left; }
+  .core-table th.h-kenpo { background: rgba(77,166,255,0.2); color: var(--kenpo); }
+  .core-table th.h-kokuho { background: rgba(94,207,122,0.2); color: var(--kokuho); }
+  .core-table th.h-rousai { background: rgba(191,143,255,0.2); color: var(--rousai); }
+
+  .core-table td {
+    padding: 12px 18px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+    text-align: center;
+    font-size: 12.5px;
+  }
+
+  .core-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink-muted);
+    background: var(--surface2);
+  }
+
+  .core-table tr:hover td { background: rgba(255,255,255,0.03); }
+  .core-table tr:hover td:first-child { background: var(--surface2); }
+
+  /* 注釈ブロック */
+  .note-block {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .note-block .note-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .note-block strong { color: var(--ink); }
+  .note-block .ng { color: var(--red); font-weight: 700; }
+  .note-block .ok { color: var(--green); font-weight: 700; }
+  .note-block .warn { color: var(--accent); font-weight: 700; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--border);
+    margin-top: 48px;
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .ccard { animation: fadeUp 0.4s ease both; }
+  .ccard:nth-child(1) { animation-delay: 0.05s; }
+  .ccard:nth-child(2) { animation-delay: 0.12s; }
+  .ccard:nth-child(3) { animation-delay: 0.19s; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <span class="eyebrow">社労士試験対策 ／ 横断整理</span>
+    <h1>移送費の<em>重要ポイント</em></h1>
+  </header>
+
+  <!-- 3法カード -->
+  <div class="section">
+    <div class="section-label">3法の基本整理</div>
+    <div class="compare-grid">
+
+      <div class="ccard kenpo">
+        <div class="ccard-law">健康保険法 第97条</div>
+        <div class="ccard-name">移送費</div>
+        <ul class="ccard-rows">
+          <li><span class="row-key">被扶養者</span><span class="row-val ok">対象（家族移送費）</span></li>
+          <li><span class="row-key">療養費に含む</span><span class="row-val ng">含まない（別給付）</span></li>
+          <li><span class="row-key">算定基準</span><span class="row-val" style="font-size:11px;">最も経済的な<br>通常の経路・方法</span></li>
+        </ul>
+      </div>
+
+      <div class="ccard kokuho">
+        <div class="ccard-law">国民健康保険法 第54条の3</div>
+        <div class="ccard-name">移送費</div>
+        <ul class="ccard-rows">
+          <li><span class="row-key">被扶養者</span><span class="row-val ng">制度なし（本人のみ）</span></li>
+          <li><span class="row-key">療養費に含む</span><span class="row-val ng">含まない（別給付）</span></li>
+          <li><span class="row-key">根拠</span><span class="row-val" style="font-size:11px;">条例・規約が<br>必要</span></li>
+        </ul>
+      </div>
+
+      <div class="ccard rousai">
+        <div class="ccard-law">労災保険法 第13条等</div>
+        <div class="ccard-name">療養（補償）給付<br>に含まれる移送費</div>
+        <ul class="ccard-rows">
+          <li><span class="row-key">被扶養者</span><span class="row-val ng">対象外（本人のみ）</span></li>
+          <li><span class="row-key">療養給付に含む</span><span class="row-val ok">含む（一部として）</span></li>
+          <li><span class="row-key">算定基準</span><span class="row-val" style="font-size:11px;">必要かつ相当な<br>実費額</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 核心：療養費に含まれるか -->
+  <div class="section">
+    <div class="section-label">移送費は「療養費」に含まれるか？</div>
+    <table class="core-table">
+      <thead>
+        <tr>
+          <th>論点</th>
+          <th class="h-kenpo">健保</th>
+          <th class="h-kokuho">国保</th>
+          <th class="h-rousai">労災</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>療養費・療養給付に含まれるか</td>
+          <td><span class="ng">含まない</span><br><small style="color:var(--ink-muted)">独立した給付</small></td>
+          <td><span class="ng">含まない</span><br><small style="color:var(--ink-muted)">独立した任意給付</small></td>
+          <td><span class="ok">含む</span><br><small style="color:var(--ink-muted)">療養（補償）給付の一部</small></td>
+        </tr>
+        <tr>
+          <td>独立した給付名称</td>
+          <td><span class="ok">あり（移送費）</span></td>
+          <td><span class="ok">あり（移送費）</span></td>
+          <td><span class="ng">なし</span></td>
+        </tr>
+        <tr>
+          <td>一部負担金</td>
+          <td>なし（全額給付）</td>
+          <td>なし（全額給付）</td>
+          <td>なし（全額給付）</td>
+        </tr>
+        <tr>
+          <td>給付が発生する根拠</td>
+          <td>法律（強制）</td>
+          <td><span class="warn">条例・規約（任意）</span></td>
+          <td>法律（強制）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 重要ポイント注釈 -->
+  <div class="section">
+    <div class="section-label">試験で問われる重要ポイント</div>
+
+    <div class="note-block">
+      <div class="note-title">① 健保・国保の移送費は療養費とは別の給付</div>
+      健保法の体系では、<strong>療養の給付・療養費・移送費はそれぞれ独立した現物・現金給付</strong>です。
+      「移送費は療養費に含まれる」とする誤りに注意。労災のみ療養（補償）給付の一部として取り扱われます。
+    </div>
+
+    <div class="note-block">
+      <div class="note-title">② 国保の移送費は「任意給付」</div>
+      国保は<span class="warn">条例または規約に定めがある場合にのみ</span>支給されます。
+      健保・労災が法律上必須なのと異なり、<span class="ng">支給しない保険者が存在しうる</span>点が最重要の違いです。
+    </div>
+
+    <div class="note-block">
+      <div class="note-title">③ 健保の「移動困難」要件</div>
+      単に遠い病院に行った・タクシーを使ったというだけでは支給されません。
+      <strong>傷病により移動が困難な状態</strong>であることが要件です。また算定は<span class="warn">「最も経済的な通常の経路・方法」</span>が基準となります。
+    </div>
+
+    <div class="note-block">
+      <div class="note-title">④ 被扶養者への支給</div>
+      健保のみ<span class="ok">被扶養者（家族）も対象</span>です。国保に被扶養者の概念はなく、労災も業務・通勤災害の本人のみが対象です。
+    </div>
+  </div>
+
+  <footer>※ 社労士試験学習用の整理資料です。最新の法令をご確認ください。</footer>
+
+</div>
+</body>
+</html>
