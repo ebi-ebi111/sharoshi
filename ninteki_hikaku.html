@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任意適用の申請義務 ― 法律間比較</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #f5f0e8;
+    --paper:   #fffdf7;
+    --ink:     #1a1208;
+    --muted:   #4a3f2f;
+    --border:  #c8b89a;
+    --c1:      #8b1a1a;   /* 健保  赤 */
+    --c2:      #1a4a6b;   /* 厚年  青 */
+    --c3:      #1a6b3a;   /* 雇保  緑 */
+    --c4:      #6b4a1a;   /* 労災  茶 */
+    --yes-bg:  #e8f5e9; --yes-br: #2e7d32;
+    --no-bg:   #fce4ec; --no-br:  #c62828;
+    --warn-bg: #fff8e1; --warn-br: #e65100;
+    --hl-bg:   #fff9e6; --hl-br:  #d4a000;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  /* 罫線背景 */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      repeating-linear-gradient(0deg,   transparent, transparent 39px, rgba(180,160,120,.07) 39px, rgba(180,160,120,.07) 40px),
+      repeating-linear-gradient(90deg,  transparent, transparent 39px, rgba(180,160,120,.04) 39px, rgba(180,160,120,.04) 40px);
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* ── ヘッダー ── */
+  header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 3px double var(--border); }
+
+  .tag {
+    display: inline-block; background: var(--c1); color: #fff;
+    font-size: .68rem; font-weight: 700; letter-spacing: .15em;
+    padding: .2em .9em; margin-bottom: .6rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.1rem, 4vw, 1.75rem);
+    font-weight: 700; line-height: 1.5; margin-bottom: .4rem;
+  }
+
+  .subtitle { font-size: .8rem; color: var(--muted); letter-spacing: .04em; }
+
+  /* ── 論点ボックス ── */
+  .point-box {
+    background: var(--paper); border: 1px solid var(--border);
+    border-left: 4px solid var(--c1);
+    padding: .9rem 1.1rem; margin-bottom: 1.75rem;
+    box-shadow: 2px 2px 0 rgba(0,0,0,.04);
+    font-size: .88rem; line-height: 1.85; color: var(--muted);
+  }
+  .point-box strong { color: var(--c1); }
+
+  /* ── セクション見出し ── */
+  .sec-title {
+    font-family: 'Noto Serif JP', serif; font-size: .95rem; font-weight: 700;
+    margin: 1.75rem 0 .85rem; padding-left: .65rem;
+    border-left: 3px solid var(--c1); letter-spacing: .04em;
+  }
+
+  /* ── カード ── */
+  .card {
+    background: var(--paper); border: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.05); overflow: hidden;
+  }
+
+  .card-head {
+    display: flex; align-items: center; gap: .7rem;
+    padding: .65rem 1rem; border-bottom: 1px solid var(--border);
+  }
+  .card-head.h1 { background: rgba(139,26,26,.06); }
+  .card-head.h2 { background: rgba(26,74,107,.06);  }
+  .card-head.h3 { background: rgba(26,107,58,.06);  }
+  .card-head.h4 { background: rgba(107,74,26,.06);  }
+
+  .law-tag {
+    font-size: .68rem; font-weight: 700; letter-spacing: .07em;
+    padding: .15em .65em; border-radius: 2px; white-space: nowrap; border: 1px solid;
+  }
+  .h1 .law-tag { color: var(--c1); background: rgba(139,26,26,.1);  border-color: rgba(139,26,26,.25); }
+  .h2 .law-tag { color: var(--c2); background: rgba(26,74,107,.1);   border-color: rgba(26,74,107,.25);  }
+  .h3 .law-tag { color: var(--c3); background: rgba(26,107,58,.1);   border-color: rgba(26,107,58,.25);  }
+  .h4 .law-tag { color: var(--c4); background: rgba(107,74,26,.1);  border-color: rgba(107,74,26,.25); }
+
+  .card-head-title { font-family: 'Noto Serif JP', serif; font-size: .9rem; font-weight: 700; flex: 1; }
+
+  .card-body { padding: .9rem 1rem; }
+
+  /* ── 加入／取消 2列グリッド ── */
+  .two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: .7rem; margin-bottom: .7rem;
+  }
+  @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+
+  .col-block { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+
+  .col-head {
+    font-size: .68rem; font-weight: 700; letter-spacing: .07em;
+    padding: .28em .75em; border-bottom: 1px solid;
+  }
+  .col-head.nyukai   { background: rgba(26,107,58,.09);  color: #1a5c30; border-color: rgba(26,107,58,.2); }
+  .col-head.torikesi { background: rgba(139,26,26,.07); color: #6b1010; border-color: rgba(139,26,26,.18); }
+
+  .col-inner { padding: .5rem .75rem; background: var(--bg); display: flex; flex-direction: column; gap: .4rem; }
+
+  .row { display: flex; flex-direction: column; gap: .05rem; }
+  .row-label { font-size: .65rem; color: var(--muted); font-weight: 700; letter-spacing: .05em; }
+  .row-val   { font-size: .84rem; line-height: 1.5; }
+
+  /* ── バッジ ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: .25em;
+    font-size: .75rem; font-weight: 700; padding: .1em .6em;
+    border-radius: 2px; border: 1.5px solid; white-space: nowrap; letter-spacing: .03em;
+  }
+  .badge.yes  { background: var(--yes-bg);  border-color: var(--yes-br);  color: var(--yes-br); }
+  .badge.no   { background: var(--no-bg);   border-color: var(--no-br);   color: var(--no-br); }
+  .badge.warn { background: var(--warn-bg); border-color: var(--warn-br); color: var(--warn-br); }
+
+  /* ── ノートバー ── */
+  .note {
+    font-size: .83rem; line-height: 1.75;
+    padding: .5rem .8rem; margin-top: .5rem;
+    border: 1.5px solid; border-radius: 2px;
+    display: flex; align-items: flex-start; gap: .45rem;
+  }
+  .note.yellow { background: var(--hl-bg);  border-color: var(--hl-br); }
+  .note.green  { background: var(--yes-bg); border-color: var(--yes-br); }
+  .note.orange { background: var(--warn-bg); border-color: var(--warn-br); }
+  .note-icon   { font-size: .95rem; flex-shrink: 0; margin-top: .15rem; }
+
+  /* ── 横断比較表 ── */
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: .5rem; }
+
+  .compare-tbl {
+    width: 100%; min-width: 560px;
+    border-collapse: collapse; font-size: .8rem;
+    background: var(--paper); border: 1px solid var(--border);
+  }
+  .compare-tbl th, .compare-tbl td {
+    border: 1px solid var(--border);
+    padding: .45rem .6rem; text-align: center; vertical-align: middle; line-height: 1.5;
+  }
+  .compare-tbl th { background: rgba(26,18,8,.06); font-weight: 700; font-size: .75rem; }
+  .compare-tbl td:first-child { text-align: left; font-weight: 600; background: rgba(26,18,8,.025); white-space: nowrap; }
+  .compare-tbl .sec-row td { background: rgba(26,18,8,.045); font-weight: 700; font-size: .73rem; letter-spacing: .05em; color: var(--muted); text-align: left; }
+  .compare-tbl tr:not(.sec-row):hover td { background: rgba(200,184,154,.13); }
+
+  /* ── まとめボックス ── */
+  .summary-box {
+    background: var(--paper); border: 1px solid var(--border);
+    border-left: 4px solid var(--c2);
+    padding: .9rem 1.1rem; margin-top: .5rem;
+    box-shadow: 2px 2px 0 rgba(0,0,0,.04);
+    font-size: .88rem; line-height: 1.9; color: var(--muted);
+  }
+  .summary-box strong { color: var(--c2); }
+
+  footer {
+    text-align: center; margin-top: 2.5rem; padding-top: .9rem;
+    border-top: 1px solid var(--border); font-size: .72rem; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="tag">社労士試験対策</div>
+  <h1>任意適用（暫定任意適用）の加入・取消<br>― 申請義務の有無 法律間比較 ―</h1>
+  <p class="subtitle">健康保険法 ／ 厚生年金保険法 ／ 雇用保険法（徴収法附則） ／ 労災保険法（整備法）</p>
+</header>
+
+<div class="point-box">
+  <strong>論点：</strong>
+  「労働者・使用される者の希望がある場合に、事業主に申請義務が生じるか」は<strong>法律・場面（加入 or 取消）によって異なる。</strong><br>
+  健康保険法・厚生年金保険法は加入・取消いずれも<strong>申請義務なし</strong>（常に任意申請）。<br>
+  雇用保険（徴収法附則）の<strong>加入申請のみ</strong>、労働者の2分の1以上の希望で<strong>申請義務あり・罰則あり</strong>。取消は任意。<br>
+  労災保険（整備法）の<strong>加入申請のみ</strong>、労働者の過半数の希望で<strong>申請義務あり・罰則なし</strong>。取消は任意。
+</div>
+
+<div class="sec-title">▍各法律の規定詳細</div>
+
+<!-- ① 健康保険法 -->
+<div class="card">
+  <div class="card-head h1">
+    <span class="law-tag">健康保険法</span>
+    <span class="card-head-title">任意適用事業所の加入・取消</span>
+  </div>
+  <div class="card-body">
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-head nyukai">▶ 加入申請</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">使用される者<br>（<strong>被保険者となるべき者</strong>に限る）の<strong>2分の1以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">厚生労働大臣に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-block">
+        <div class="col-head torikesi">▶ 取消申請</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">使用される者<br>（<strong>被保険者である者</strong>に限る）の<strong>4分の3以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">厚生労働大臣に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note yellow">
+      <span class="note-icon">📌</span>
+      <span>加入・取消いずれも希望があっても事業主に<strong>申請義務は生じない</strong>。加入同意の対象は「被保険者となるべき者」、取消同意の対象は「被保険者である者」と表現が異なる点に注意。取消の同意要件（3/4以上）は加入時（1/2以上）より厳しい。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ② 厚生年金保険法 -->
+<div class="card">
+  <div class="card-head h2">
+    <span class="law-tag">厚生年金保険法</span>
+    <span class="card-head-title">任意適用事業所の加入・取消</span>
+  </div>
+  <div class="card-body">
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-head nyukai">▶ 加入申請</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">使用される者<br>（<strong>第12条に規定する者を除く</strong>）の<strong>2分の1以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">厚生労働大臣に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-block">
+        <div class="col-head torikesi">▶ 取消申請（第8条）</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">使用される者<br>（<strong>第12条に規定する者を除く</strong>）の<strong>4分の3以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">厚生労働大臣に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note yellow">
+      <span class="note-icon">📌</span>
+      <span>健康保険法と<strong>同様の構造</strong>。加入・取消いずれも申請義務は生じない。同意対象の表現が健保法（「被保険者となるべき者」「被保険者である者」）とは異なり、厚年法では加入・取消ともに「<strong>第12条に規定する者を除く者</strong>」（適用除外者を除く者）となっている点が試験で問われやすい。健保・厚年はセット申請が原則。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 雇用保険法（徴収法附則） -->
+<div class="card">
+  <div class="card-head h3">
+    <span class="law-tag">雇用保険法（徴収法附則）</span>
+    <span class="card-head-title">暫定任意適用事業の加入・取消</span>
+  </div>
+  <div class="card-body">
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-head nyukai">▶ 加入申請（附則第2条）</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">労働者の<strong>2分の1以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">厚生労働大臣に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge yes">◎ あり</span><br><small style="color:#1a5c30;font-size:.75rem">違反：6月以下の懲役または30万円以下の罰金</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-block">
+        <div class="col-head torikesi">▶ 取消申請（附則第4条）</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">労働者の<strong>4分の3以上</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">所轄都道府県労働局長に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note green" style="margin-bottom:.5rem;">
+      <span class="note-icon">⚠️</span>
+      <span><strong>加入申請は義務申請・罰則あり。</strong> 労働者の2分の1以上が希望した場合、事業主は申請しなければならない（罰則あり）。雇用保険は労働者にも保険料負担が生じるため同意要件が設けられており、過半数希望による申請義務も厳格に規定されている。</span>
+    </div>
+    <div class="note yellow">
+      <span class="note-icon">📌</span>
+      <span><strong>取消申請は任意申請。</strong> 労働者が消滅を希望しても事業主に申請義務は生じない。取消の同意要件（3/4以上）は加入時（1/2以上）より厳しい。加入申請の認可権者は厚生労働大臣（都道府県労働局長へ委任）、取消申請の認可権者は所轄都道府県労働局長であり、申請先が異なる点にも注意。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ④ 労災保険法（整備法） -->
+<div class="card">
+  <div class="card-head h4">
+    <span class="law-tag">労災保険法（整備法）</span>
+    <span class="card-head-title">暫定任意適用事業の加入・取消</span>
+  </div>
+  <div class="card-body">
+    <div class="two-col">
+      <div class="col-block">
+        <div class="col-head nyukai">▶ 加入申請（整備法第7条）</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val"><strong>なし</strong>（同意書類の添付不要）</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">所轄都道府県労働局長に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge warn">△ あり・罰則なし</span><br><small style="color:#7a4500;font-size:.75rem">労働者の過半数が希望→申請義務（罰則なし）</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-block">
+        <div class="col-head torikesi">▶ 取消申請（整備法第8条）</div>
+        <div class="col-inner">
+          <div class="row">
+            <div class="row-label">同意要件</div>
+            <div class="row-val">労働者の<strong>過半数（1/2超）</strong>の同意</div>
+          </div>
+          <div class="row">
+            <div class="row-label">追加要件</div>
+            <div class="row-val">① 保険関係成立後<strong>1年経過</strong><br>② 特別保険料徴収期間の経過</div>
+          </div>
+          <div class="row">
+            <div class="row-label">申請先・認可</div>
+            <div class="row-val">所轄都道府県労働局長に申請し、認可を受ける</div>
+          </div>
+          <div class="row">
+            <div class="row-label">希望があった場合の申請義務</div>
+            <div class="row-val"><span class="badge no">✕ なし（任意申請）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note orange" style="margin-bottom:.5rem;">
+      <span class="note-icon">⚠️</span>
+      <span><strong>加入申請：申請義務あり・罰則なし。</strong> 労働者の過半数が希望した場合、事業主は申請義務を負う。雇用保険と異なり<strong>義務違反の罰則規定はない</strong>点が試験頻出。加入申請に同意要件（書類添付）は<strong>不要</strong>。申請先は所轄都道府県労働局長（厚生労働大臣から委任）。</span>
+    </div>
+    <div class="note yellow">
+      <span class="note-icon">📌</span>
+      <span><strong>取消申請：任意申請。ただし追加要件あり。</strong> 同意要件（過半数）のほかに、①保険関係成立後1年経過、②特別保険料徴収期間の経過という2つの追加要件を満たす必要がある。雇用保険の取消（3/4以上・追加要件なし）と混同しないこと。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── 横断比較表 ── -->
+<div class="sec-title">▍横断比較表</div>
+<div class="tbl-wrap">
+<table class="compare-tbl">
+  <thead>
+    <tr>
+      <th>比較項目</th>
+      <th>健康保険法</th>
+      <th>厚生年金保険法</th>
+      <th>雇用保険法<br>（徴収法附則）</th>
+      <th>労災保険法<br>（整備法）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="sec-row"><td colspan="5">▍加入申請</td></tr>
+    <tr>
+      <td>同意対象・要件</td>
+      <td>被保険者となるべき者の<br><strong>1/2以上</strong></td>
+      <td>使用される者（適用除外除く）の<br><strong>1/2以上</strong></td>
+      <td>労働者の<br><strong>1/2以上</strong></td>
+      <td><strong>なし</strong>（書類添付不要）</td>
+    </tr>
+    <tr>
+      <td>希望→申請義務</td>
+      <td><span class="badge no">なし</span></td>
+      <td><span class="badge no">なし</span></td>
+      <td><span class="badge yes">あり</span><br><small>1/2以上の希望</small></td>
+      <td><span class="badge warn">あり・罰則なし</span><br><small>過半数の希望</small></td>
+    </tr>
+    <tr>
+      <td>義務違反の罰則</td>
+      <td>—</td>
+      <td>—</td>
+      <td><strong>あり</strong><br><small>6月以下懲役等</small></td>
+      <td><strong>なし</strong></td>
+    </tr>
+    <tr>
+      <td>申請先</td>
+      <td>厚生労働大臣</td>
+      <td>厚生労働大臣</td>
+      <td>厚生労働大臣<br><small>（局長に委任）</small></td>
+      <td>所轄都道府県<br>労働局長</td>
+    </tr>
+    <tr class="sec-row"><td colspan="5">▍取消申請</td></tr>
+    <tr>
+      <td>同意対象・要件</td>
+      <td>被保険者である者の<br><strong>3/4以上</strong></td>
+      <td>使用される者（適用除外除く）の<br><strong>3/4以上</strong></td>
+      <td>労働者の<br><strong>3/4以上</strong></td>
+      <td>労働者の<br><strong>過半数（1/2超）</strong></td>
+    </tr>
+    <tr>
+      <td>追加要件</td>
+      <td>なし</td>
+      <td>なし</td>
+      <td>なし</td>
+      <td>①1年経過<br>②特別保険料期間経過</td>
+    </tr>
+    <tr>
+      <td>希望→申請義務</td>
+      <td><span class="badge no">なし</span></td>
+      <td><span class="badge no">なし</span></td>
+      <td><span class="badge no">なし</span></td>
+      <td><span class="badge no">なし</span></td>
+    </tr>
+    <tr>
+      <td>申請先</td>
+      <td>厚生労働大臣</td>
+      <td>厚生労働大臣</td>
+      <td>所轄都道府県<br>労働局長</td>
+      <td>所轄都道府県<br>労働局長</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ── まとめ ── -->
+<div class="sec-title">▍試験対策まとめ</div>
+<div class="summary-box">
+  ① 健保・厚年は加入・取消いずれも<strong>常に任意申請</strong>。希望があっても申請義務は生じない。<br>
+  ② 健保法の同意対象は「<strong>被保険者となるべき者</strong>（加入）／被保険者である者（取消）」、厚年法は加入・取消ともに「<strong>使用される者（第12条除く）</strong>」と表現が異なる。<br>
+  ③ 雇用保険の<strong>加入申請のみ</strong>、労働者1/2以上の希望で<strong>申請義務あり・罰則あり</strong>（徴収法附則2条）。<br>
+  ④ 労災保険の<strong>加入申請のみ</strong>、過半数希望で<strong>申請義務あり・罰則なし</strong>（整備法7条）。雇用保険と混同しないこと。<br>
+  ⑤ <strong>取消申請は全法律で申請義務なし</strong>。ただし労災保険の取消には1年経過等の追加要件あり。<br>
+  ⑥ 取消の同意要件：健保・厚年・雇用保険は<strong>3/4以上</strong>、労災保険は<strong>過半数</strong>。<br>
+  ⑦ 加入・取消の申請先：雇用保険（取消）・労災保険（加入・取消）はいずれも<strong>所轄都道府県労働局長</strong>。健保・厚年・雇用保険（加入）は<strong>厚生労働大臣</strong>。
+</div>
+
+<footer>
+  社労士試験対策資料 ／ 健保法31・33条 ／ 厚年法6・8条 ／ 徴収法附則2・4条 ／ 整備法7・8条
+</footer>
+
+</div>
+</body>
+</html>
