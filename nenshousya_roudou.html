@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年少者に係る労働基準法まとめ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #8B1A1A;
+    --primary-light: #C0392B;
+    --accent: #E8C547;
+    --bg: #FDF6EC;
+    --bg-card: #FFFFFF;
+    --text: #1a1a1a;
+    --text-muted: #555;
+    --border: #e0d5c8;
+    --child-color: #8B1A1A;
+    --youth-color: #C0717A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--primary);
+    color: white;
+    padding: 20px 16px 16px;
+    text-align: center;
+  }
+
+  header .subtitle {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.75;
+    margin-bottom: 4px;
+  }
+
+  header h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 14px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* ── Section card ── */
+  .card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border: 1px solid var(--border);
+  }
+
+  .card-header {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  /* ── 定義セクション ── */
+  .definition-box {
+    background: #FFF9F0;
+    border: 1px solid #e8d8c0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .definition-box .law-ref {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .def-label {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .definition-box p {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  /* ── 年齢バー ── */
+  .age-bar-wrap {
+    margin: 14px 0 10px;
+  }
+
+  .age-bar-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .age-bar {
+    display: flex;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-child {
+    background: var(--child-color);
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .bar-youth {
+    background: var(--youth-color);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .age-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    position: relative;
+  }
+
+  .age-marker {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .age-marker.center {
+    position: absolute;
+    left: 35%;
+    transform: translateX(-50%);
+  }
+
+  .age-note {
+    font-size: 11px;
+    color: var(--primary);
+    background: #FFF0F0;
+    border-left: 3px solid var(--primary);
+    padding: 6px 10px;
+    margin-top: 6px;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.6;
+  }
+
+  /* ── 注記 (uses) ── */
+  .use-notes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .use-note-item {
+    background: #f5f0e8;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .use-note-item .use-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  /* ── 法文ボックス ── */
+  .law-text-box {
+    background: #F9F5EF;
+    border: 1px solid #ddd0bb;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .law-text-box .ref-tag {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .law-text-box p {
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* ── 制限テーブル ── */
+  .restriction-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .restriction-table thead tr th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .restriction-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .restriction-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .restriction-table td {
+    padding: 11px 12px;
+    font-size: 13.5px;
+    vertical-align: middle;
+  }
+
+  .restriction-table td.num {
+    width: 40px;
+    text-align: center;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    background: var(--primary-light);
+  }
+
+  .restriction-table tbody tr:nth-child(even) td:not(.num) {
+    background: #fdf5ee;
+  }
+
+  /* ── 特例テーブル ── */
+  .tokurei-item {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .tokurei-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .tokurei-num {
+    background: var(--primary-light);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tokurei-content {
+    padding: 12px 14px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    background: white;
+  }
+
+  .highlight {
+    background: #FFE97A;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+
+  /* ── 最低年齢セクション ── */
+  .min-age-section {
+    margin-top: 16px;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .law-ref-small {
+    font-size: 11px;
+    background: #f0e8e0;
+    color: var(--primary);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .min-age-text {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--text);
+    background: #F9F5EF;
+    border: 1px solid #ddd0bb;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .kwd { color: var(--primary-light); font-weight: 700; }
+
+  /* ── 使用要件テーブル ── */
+  .req-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .req-table th {
+    background: var(--primary);
+    color: white;
+    padding: 9px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .req-table td {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+
+  .req-table tr:nth-child(even) td {
+    background: #fdf5ee;
+  }
+
+  .req-table td.req-item {
+    font-size: 13px;
+  }
+
+  /* ── 試験対策ボックス ── */
+  .shiken-box {
+    background: #FFF8F8;
+    border: 2px solid var(--primary-light);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 4px;
+  }
+
+  .shiken-box .shiken-label {
+    display: inline-block;
+    background: var(--primary-light);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .shiken-box p {
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* ── 参考ボックス ── */
+  .sanko-box {
+    background: #F5F5F5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 12px;
+  }
+
+  .sanko-label {
+    display: inline-block;
+    background: #888;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .sanko-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .sanko-box p {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--text);
+  }
+
+  /* ── サブセクションタイトル ── */
+  .subsection-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── 対象者バッジ ── */
+  .target-badge {
+    display: inline-block;
+    background: #FFF3CD;
+    border: 1px solid #E8C547;
+    color: #7a5c00;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 400px) {
+    header h1 { font-size: 18px; }
+    .use-notes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="subtitle">社労士試験対策 ／ 労働基準法</div>
+  <h1>年少者に係る労働時間の規定</h1>
+</header>
+
+<div class="container">
+
+  <!-- ① 定義 -->
+  <div class="card">
+    <div class="card-header">📌 年少者・児童の定義</div>
+    <div class="card-body">
+
+      <div class="definition-box">
+        <div class="def-label">年少者</div>
+        <p>満18歳に満たない者</p>
+      </div>
+
+      <div class="age-bar-wrap">
+        <div class="age-bar-label">年齢区分イメージ</div>
+        <div class="age-bar">
+          <div class="bar-child">児童</div>
+          <div class="bar-youth">年少者（18歳未満）</div>
+        </div>
+        <div class="age-markers">
+          <div class="age-marker">0歳</div>
+          <div class="age-marker center">満15歳に達した日以後の<br>最初の３月31日</div>
+          <div class="age-marker">満18歳</div>
+        </div>
+      </div>
+
+      <!-- 最低年齢（法56） -->
+      <div class="min-age-section">
+        <div class="section-subtitle">
+          最低年齢
+          <span class="law-ref-small">法56</span>
+        </div>
+
+        <div class="min-age-text">
+          「使用者は、<span class="kwd">児童</span>が<span class="kwd">満15歳</span>に達した日以後の最初の<span class="kwd">３月31日</span>が終了するまで、これを使用してはならない。」とされています。
+        </div>
+
+        <div class="section-subtitle" style="margin-top:14px;">児童を使用するための要件</div>
+
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>満13歳以上の児童（≒中学生）を<br>使用するための要件</th>
+              <th>満13歳未満の児童（≒小学生以下）<br>を使用するための要件</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="req-item">①<span class="kwd">非工業的業種</span>の事業であること</td>
+              <td class="req-item">①<span class="kwd">映画の製作又は演劇</span>の事業であること</td>
+            </tr>
+            <tr>
+              <td class="req-item">②児童の<span class="kwd">健康及び福祉</span>に有害でないこと</td>
+              <td rowspan="4" class="req-item" style="vertical-align:middle; color:var(--text-muted); font-size:12px;">（②〜⑤は満13歳以上と同様）</td>
+            </tr>
+            <tr>
+              <td class="req-item">③<span class="kwd">労働が軽易</span>なものであること</td>
+            </tr>
+            <tr>
+              <td class="req-item">④<span class="kwd">行政官庁</span>（所轄労働基準監督署長）の<span class="kwd">許可</span>を受けること</td>
+            </tr>
+            <tr>
+              <td class="req-item">⑤<span class="kwd">修学時間外</span>に使用すること</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="shiken-box">
+          <span class="shiken-label">試験対策</span>
+          <p>法56条に定める最低年齢違反の労働契約のもとに就労している児童を解雇する場合であっても、法20条の解雇予告に関する規定は適用される（解雇予告手当を支払った上で即時解雇しなければならない。）。</p>
+        </div>
+
+        <div class="sanko-box">
+          <span class="sanko-label">参考※1</span>
+          <p class="sanko-title">「児童の使用が禁止されている業務」とは？</p>
+          <p>児童を、①公衆の娯楽を目的として<ruby>曲馬<rt>きょくば</rt></ruby>又は<ruby>軽業<rt>かるわざ</rt></ruby>を行う業務、②戸々について、又は道路等の場所において、<strong>歌謡、遊芸等</strong>の演技を行う業務、③<span class="kwd">旅館、料理店、飲食店又は娯楽場</span>における業務、④<strong>エレベーターの運転</strong>の業務、に就かせることはできない（年少則９）。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ② 制限一覧 -->
+  <div class="card">
+    <div class="card-header">🚫 年少者に係る労働時間等の制限</div>
+    <div class="card-body">
+
+      <div class="law-text-box">
+        <span class="ref-tag">労働基準法 第60条第１項</span>
+        <p>第32条の２から第32条の５まで、第36条、第40条及び第41条の２の規定は、満18才に満たない者については、これを適用しない。</p>
+      </div>
+
+      <table class="restriction-table">
+        <thead>
+          <tr><th colspan="2">年少者に関する制限（適用しない）</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">①</td><td>１か月単位の変形労働時間制</td></tr>
+          <tr><td class="num">②</td><td>フレックスタイム制</td></tr>
+          <tr><td class="num">③</td><td>１年単位の変形労働時間制</td></tr>
+          <tr><td class="num">④</td><td>１週間単位の非定型的変形労働時間制</td></tr>
+          <tr><td class="num">⑤</td><td>36協定による時間外・休日労働</td></tr>
+          <tr><td class="num">⑥</td><td>労働時間及び休憩の特例</td></tr>
+          <tr><td class="num">⑦</td><td>高度プロフェッショナル制度</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- ③ 特例 -->
+  <div class="card">
+    <div class="card-header">✅ 年少者に係る労働時間の特例</div>
+    <div class="card-body">
+
+      <div class="law-text-box">
+        <span class="ref-tag">労働基準法 第60条第３項</span>
+        <p>使用者は、第32条の規定にかかわらず、<span class="highlight">満15歳以上で満18歳に満たない者</span>については、<span class="highlight">満18歳に達するまでの間（満15歳に達した日以後の最初の３月31日までの間を除く。）</span>、次に定めるところにより、<span class="highlight">労働させることができる。</span></p>
+      </div>
+
+      <div class="target-badge">対象：満15歳以上～満18歳未満（年度区切りに注意）</div>
+
+      <div class="tokurei-item">
+        <div class="tokurei-num">① 特例その一</div>
+        <div class="tokurei-content">
+          １週間の労働時間が40時間を超えない範囲内において、１週間のうち１日の労働時間を４時間以内に短縮する場合において、他の日の労働時間を10時間まで延長すること。
+        </div>
+      </div>
+      <div class="sanko-box" style="margin-bottom:12px;">
+        <span class="sanko-label">参考※1</span>
+        <p class="sanko-title">「４時間以内」とは？</p>
+        <p>全１日労働させない場合も含まれる。</p>
+      </div>
+      <div class="sanko-box" style="margin-bottom:12px;">
+        <span class="sanko-label">参考※2</span>
+        <p class="sanko-title">延長例は？</p>
+        <p>「他の日」は<span class="kwd">１日に限られない</span>ので、例えば、通常８時間勤務のところ、月曜を４時間勤務（又は休日）とした場合、火曜と水曜を<strong>10時間</strong>勤務とすることができる。</p>
+      </div>
+
+      <div class="tokurei-item">
+        <div class="tokurei-num">② 特例その二</div>
+        <div class="tokurei-content">
+          １週間について48時間、１日について８時間を超えない範囲内において、<span class="highlight">１か月単位の変形労働時間制又は</span>１年単位の変形労働時間制の規定の例により労働させること。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ⑤ 年少者に関する制限（深夜業・時間外） -->
+  <div class="card">
+    <div class="card-header">🌙 年少者に関する深夜業・時間外の制限</div>
+    <div class="card-body">
+
+      <div class="subsection-title">ａ　深夜業の原則　<span class="law-ref-small">法61-ⅠⅡ</span></div>
+      <div class="law-text-box">
+        <p>「使用者は、<strong>満18歳に満たない者</strong>を<span class="kwd">午後10時</span>から<span class="kwd">午前５時</span>までの間において使用してはならない。」とされています。なお、深夜業の時間帯については、「<strong>厚生労働大臣</strong>は、必要であると認める場合においては、地域又は期間を限って、<strong>午後11時から午前６時まで</strong>とすることができる。」とされています。</p>
+      </div>
+
+      <div class="subsection-title" style="margin-top:16px;">ｃ　時間外・休日労働の例外　<span class="law-ref-small">法60-Ⅰ、33、41</span></div>
+      <div class="law-text-box">
+        <p>労働基準法33条の規定は年少者にも適用されるので、<span class="kwd">災害等</span>又は<span class="kwd">公務</span>のために<strong>臨時の必要</strong>がある場合には、同条に基づき時間外・休日労働をさせることができます。</p>
+        <p style="margin-top:10px;">なお、年少者が<span class="kwd">法41条該当者</span>（管理監督者）である場合には、労働時間等の規制の対象外となるため、法定労働時間を超えて、又は法定休日に労働をさせることが可能です。</p>
+      </div>
+
+      <div class="shiken-box" style="margin-bottom:16px;">
+        <span class="shiken-label">試験対策</span>
+        <p>林業に従事する年少者は、法41条該当者ではないので、災害等又は公務のために臨時の必要がある場合を除き、時間外・休日労働に就かせることができないが、深夜業に就かせることはできる。</p>
+      </div>
+
+      <div class="subsection-title">ｄ　深夜業の例外　<span class="law-ref-small">法61-Ⅰただし書、ⅢⅣ</span></div>
+      <div class="law-text-box">
+        <p>次の場合には、満18歳に満たない者に深夜業をさせることができます。</p>
+      </div>
+
+      <div class="tokurei-item">
+        <div class="tokurei-num">①</div>
+        <div class="tokurei-content"><span class="kwd">災害等</span>により臨時の必要がある場合の時間外・休日労働が深夜に及んだ場合（<span class="kwd">公務</span>のために臨時の必要がある場合には、年少者に深夜業をさせることは<strong>できない</strong>）</div>
+      </div>
+      <div class="tokurei-item">
+        <div class="tokurei-num">②</div>
+        <div class="tokurei-content"><span class="kwd">農林業、水産・養蚕・畜産業、保健衛生業又は電話交換の業務</span>に使用される年少者の場合</div>
+      </div>
+      <div class="tokurei-item">
+        <div class="tokurei-num">③</div>
+        <div class="tokurei-content"><span class="kwd">交替制</span>によって使用する<span class="kwd">満16歳以上の男性</span>である場合</div>
+      </div>
+      <div class="tokurei-item" style="margin-bottom:0;">
+        <div class="tokurei-num">④</div>
+        <div class="tokurei-content"><span class="kwd">交替制</span>によって労働させる事業であり、かつ、<strong>行政官庁</strong>（所轄労働基準監督署長）の<span class="kwd">許可</span>を受けて、<span class="kwd">午後10時30分</span>まで（深夜業の時間帯が午後11時から午前６時までとされている場合にあっては、<span class="kwd">午前５時30分</span>から）労働させる場合</div>
+      </div>
+
+      <div class="sanko-box" style="margin-top:12px;">
+        <span class="sanko-label">参考※4</span>
+        <p class="sanko-title">電話の事業に使用される年少者は？</p>
+        <p>電話の事業に使用される年少者であっても、<span class="kwd">電話交換の業務以外</span>の業務に従事する者については深夜業は認められない。</p>
+      </div>
+
+      <div class="sanko-box" style="margin-top:12px;">
+        <span class="sanko-label">参考※3</span>
+        <p class="sanko-title">注意点は？</p>
+        <p>①〜④のいずれの場合にも、<span class="kwd">割増賃金の支払義務が発生する。</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 年少者の証明書 -->
+  <div class="card">
+    <div class="card-header">📄 年少者の証明書　<span style="font-size:12px;font-weight:400;opacity:0.85;">法57</span></div>
+    <div class="card-body">
+
+      <div class="law-text-box">
+        <p>「使用者は、<span class="kwd">満18歳</span>に満たない者について、その<strong>年齢を証明する<span class="kwd">戸籍証明書</span>※２を事業場に備え付け</strong>なければならない。」また、「使用者は、最低年齢の例外の規定によって使用する<span class="kwd">児童</span>については、<strong>修学</strong>に差し支えないことを証明する<span class="kwd">学校長の証明書</span>及び<span class="kwd">親権者又は<ruby>後見人<rt>こうけんにん</rt></ruby>の同意書</span>を<strong>事業場に備え付け</strong>なければならない。」とされています。</p>
+      </div>
+
+      <div class="shiken-box">
+        <span class="shiken-label">試験対策</span>
+        <p>年少者の年齢確認義務は使用者にある。</p>
+      </div>
+
+      <div class="sanko-box" style="margin-top:12px;">
+        <span class="sanko-label">参考※2</span>
+        <p class="sanko-title">戸籍の「無料」証明</p>
+        <p>労働者及び労働者になろうとする者は、その<strong>戸籍</strong>に関して戸籍事務を<ruby>掌<rt>つかさど</rt></ruby>る者（市区町村長）又はその代理者（助役）に対して、<span class="kwd">無料で証明</span>を請求することができる。<strong>使用者</strong>が、労働者及び労働者になろうとする者の戸籍に関して証明を請求する場合においても同様である（法111）。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 年少者の帰郷旅費 -->
+  <div class="card">
+    <div class="card-header">🚃 年少者の帰郷旅費　<span style="font-size:12px;font-weight:400;opacity:0.85;">法64</span></div>
+    <div class="card-body">
+
+      <div class="law-text-box">
+        <p>「<strong>満18歳</strong>に満たない者が<span class="kwd">解雇の日</span>から<span class="kwd">14日以内</span>に<span class="kwd">帰郷※３</span>する場合においては、使用者は、<span class="kwd">必要な旅費</span>を負担しなければならない。ただし、<strong>満18歳</strong>に満たない者がその<strong>責めに帰すべき事由</strong>に基づいて解雇され、使用者がその事由について<span class="kwd">行政官庁</span>（所轄労働基準監督署長）の<span class="kwd">認定※４</span>を受けたときは、この限りでない。」とされています。</p>
+      </div>
+
+      <div class="shiken-box">
+        <span class="shiken-label">試験対策</span>
+        <p>帰郷旅費には、就業のため移転した家族の旅費も含まれる。</p>
+      </div>
+
+      <div class="sanko-box" style="margin-top:12px;">
+        <span class="sanko-label">発展※3</span>
+        <p class="sanko-title">「帰郷」とは？</p>
+        <p>本人の住所地に限らず、<strong>父母</strong>その他の<strong>親族の保護</strong>を受ける場合はその者の住所に帰る場合も<span class="kwd">含む。</span></p>
+      </div>
+
+      <div class="sanko-box" style="margin-top:12px;">
+        <span class="sanko-label">参考※4</span>
+        <p class="sanko-title">解雇予告除外認定を受けたときは？</p>
+        <p>改めて、本条ただし書の規定による帰郷旅費支給除外認定を<span class="kwd">受けなくてもよい</span>（年少則10-Ⅱ）。</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ④ 児童に関する制限（末尾） -->
+  <div class="card">
+    <div class="card-header">👶 児童に関する制限</div>
+    <div class="card-body">
+
+      <div class="subsection-title">ａ　法定労働時間の制限　<span class="law-ref-small">法60-Ⅱ</span></div>
+      <div class="law-text-box">
+        <p>「使用者は、<span class="kwd">児童</span>については、<strong>休憩時間を除き、修学時間</strong>を通算して１週間について<span class="kwd">40時間</span>を超えて、労働させてはならない。１週間の各日については、<strong>休憩時間を除き、修学時間を通算して</strong>１日について<span class="kwd">７時間</span>を超えて、労働させてはならない。」とされています。</p>
+      </div>
+
+      <div class="sanko-box" style="margin-bottom:16px;">
+        <span class="sanko-label">語句※5　修学時間</span>
+        <p>授業開始時刻から同日の最終授業終了時刻までの時間から休憩時間（昼食時間を含む。）を除いた時間をいう。</p>
+      </div>
+
+      <div class="subsection-title">ｂ　深夜業の制限　<span class="law-ref-small">法61-Ⅴ、H16厚労告407号</span></div>
+      <div class="law-text-box">
+        <p>「使用者は、<span class="kwd">児童</span>を<span class="kwd">午後８時</span>から<span class="kwd">午前５時</span>までの間において使用してはならない。」とされています。</p>
+        <p style="margin-top:10px;">ただし、「<strong>厚生労働大臣</strong>は、必要であると認める場合においては、児童の深夜業の時間帯を地域又は期間を限って、<span class="kwd">午後９時</span>から<span class="kwd">午前６時</span>までとすることができる。」とされており、<span class="kwd">演劇の事業</span>に使用される<strong>児童</strong>が<span class="kwd">演技</span>を行う業務に従事する場合は、この深夜業の時間帯が適用されます。</p>
+      </div>
+
+      <table class="restriction-table">
+        <thead>
+          <tr><th>児童の区分</th><th>就業が禁止される深夜業の時間帯</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>下記以外の児童</td><td style="text-align:center;">午後８時〜午前５時</td></tr>
+          <tr><td>演劇子役の児童</td><td style="text-align:center;">午後９時〜午前６時</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
