@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遺族厚生年金の額｜社労士試験まとめ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ed;
+    --card: #ffffff;
+    --primary: #1a5276;
+    --accent: #c0392b;
+    --gold: #b7860b;
+    --text: #1c1c1c;
+    --sub: #555;
+    --border: #d6cfc4;
+    --short: #1a5276;
+    --long: #1e8449;
+    --highlight: #fef9e7;
+    --highlight2: #eaf4fb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    font-size: 14px;
+  }
+
+  header {
+    background: var(--primary);
+    color: white;
+    padding: 22px 18px 18px;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), #e67e22);
+  }
+  header .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 5px;
+  }
+  header h1 {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  header .ref {
+    font-size: 11px;
+    opacity: 0.65;
+    margin-top: 5px;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 18px 14px 60px;
+  }
+
+  /* ── 大見出し ── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 26px 0 10px;
+  }
+  .sec-head .badge {
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    white-space: nowrap;
+  }
+  .sec-head h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.5;
+  }
+
+  /* ── カード ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .card-head {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── 冒頭概要ボックス ── */
+  .overview {
+    background: #eef5fb;
+    border: 1.5px solid var(--primary);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0 4px;
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+  .overview .title {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 13px;
+    margin-bottom: 7px;
+    letter-spacing: 0.5px;
+  }
+  .proviso {
+    background: #fdf2f2;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #6e1010;
+    line-height: 1.85;
+  }
+  .proviso strong { color: var(--accent); }
+
+  /* ── 計算式 ── */
+  .formula {
+    background: var(--highlight2);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: center;
+    margin: 10px 0;
+  }
+  .formula .flabel {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+  .formula .eq {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* ── 比較表 ── */
+  .cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 8px;
+  }
+  .cmp-table th {
+    padding: 7px 9px;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+  }
+  .cmp-table td {
+    padding: 9px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  .cmp-table .rl {
+    font-weight: 700;
+    color: var(--sub);
+    font-size: 12px;
+    width: 76px;
+  }
+  .th-s { background: #ddeeff; color: var(--short); }
+  .th-l { background: #d5f5e3; color: var(--long); }
+  .td-s { background: #f4f8ff; }
+  .td-l { background: #f4fdf6; }
+
+  /* ── タグ ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  .tag-s { background: #d6e8fb; color: var(--short); }
+  .tag-l { background: #d5f5e3; color: var(--long); }
+  .tag-sp { background: #ede; color: #6c3483; }
+
+  /* ── 注記 ── */
+  .note {
+    background: var(--highlight);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 7px 7px 0;
+    padding: 11px 13px;
+    font-size: 13px;
+    margin: 9px 0;
+    color: #5d4000;
+    line-height: 1.85;
+  }
+  .note strong { color: #7d5800; }
+
+  /* ── 金額比較 ── */
+  .amt-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .amt-item {
+    background: var(--highlight2);
+    border: 1px solid #a9cce3;
+    border-radius: 8px;
+    padding: 11px 13px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .amt-item .alabel {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .amt-vs {
+    text-align: center;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 13px;
+    padding: 3px 0;
+  }
+
+  /* ── 区切り ── */
+  hr.div {
+    border: none;
+    border-top: 2px dashed var(--border);
+    margin: 22px 0;
+  }
+
+  /* ── 改定リスト ── */
+  .ref-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 6px;
+  }
+  .ref-list li {
+    padding: 10px 0 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.85;
+    position: relative;
+  }
+  .ref-list li:last-child { border-bottom: none; }
+  .ref-list li::before {
+    content: '▶';
+    position: absolute;
+    left: 0; top: 13px;
+    color: var(--primary);
+    font-size: 10px;
+  }
+
+  /* ── まとめ ── */
+  .summary {
+    background: linear-gradient(135deg, #1a5276, #21618c);
+    color: white;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 28px;
+  }
+  .summary h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 11px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .summary ul {
+    list-style: none;
+    padding: 0;
+    font-size: 12.5px;
+    line-height: 2;
+  }
+  .summary ul li::before {
+    content: '✓ ';
+    color: #5dade2;
+    font-weight: 700;
+  }
+
+  @media (min-width: 580px) {
+    body { font-size: 15px; }
+    header h1 { font-size: 23px; }
+    .cmp-table { font-size: 13.5px; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">厚生年金保険法｜社労士試験対策</div>
+  <h1>遺族厚生年金の額</h1>
+  <div class="ref">法60・61・64の2 ／ 法附則17の2・17の3</div>
+</header>
+
+<div class="container">
+
+  <!-- ══ 冒頭 概要 ══ -->
+  <div class="overview">
+    <div class="title">📋 全体の原則</div>
+    遺族厚生年金の額は、次の<strong>Ⅰ又はⅡの額</strong>となります。
+    <div class="proviso">
+      <strong>⚠️ ただし書き（法60－Ⅰ）：</strong><br>
+      遺族厚生年金の受給権者が、<strong>当該遺族厚生年金と同一の支給事由に基づく国民年金法による遺族基礎年金の支給を受けるとき</strong>は、Ⅰの「原則としての額」とされます。
+    </div>
+  </div>
+
+  <!-- ══ Ⅰ 原則としての額 ══ -->
+  <div class="sec-head">
+    <span class="badge">Ⅰ</span>
+    <h2>原則としての額（法60－Ⅰ①）</h2>
+  </div>
+
+  <!-- 基本計算式 -->
+  <div class="card">
+    <div class="card-head">📐 基本の計算式</div>
+    <div class="formula">
+      <div class="flabel">遺族厚生年金の額（原則）</div>
+      <div class="eq">報酬比例部分の額 × ３／４</div>
+    </div>
+    <p style="font-size:13px; color:var(--sub); line-height:1.85;">
+      死亡した被保険者又は被保険者であった者の<strong>被保険者期間を基礎として</strong>、老齢厚生年金の報酬比例部分の額の算式により計算した額の<strong>4分の3に相当する額</strong>となります。
+    </p>
+  </div>
+
+  <!-- 短期 vs 長期 -->
+  <div class="card">
+    <div class="card-head">⚖️ 短期要件 vs 長期要件の扱いの違い</div>
+    <div style="overflow-x:auto;">
+      <table class="cmp-table">
+        <tr>
+          <th class="rl" style="background:transparent;"></th>
+          <th class="th-s">短期要件</th>
+          <th class="th-l">長期要件</th>
+        </tr>
+        <tr>
+          <td class="rl">給付乗率</td>
+          <td class="td-s">
+            <strong>7.125/1000・5.481/1000のみ</strong>を用いる。<br>
+            生年月日による読替（引上げ）は<strong>行わない</strong>
+          </td>
+          <td class="td-l">
+            生年月日による読替（引上げ）を<strong>行う</strong><br>
+            （<strong>7.125～9.5/1000又は5.481～7.308/1000</strong>）
+          </td>
+        </tr>
+        <tr>
+          <td class="rl">300月<br>最低保障</td>
+          <td class="td-s" style="text-align:center;">
+            <strong style="color:var(--short);">行う ✔</strong>
+          </td>
+          <td class="td-l" style="text-align:center;">
+            <strong style="color:var(--accent);">行わない ✖</strong>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:12px;">
+      <strong>「短期要件」と「長期要件」の両方に該当する場合：</strong><br>
+      原則として<span class="tag tag-s">短期要件</span>に該当したものとして年金額が計算されます。<br>
+      遺族が遺族厚生年金の請求をしたときに<strong>別段の申出をした場合に限って</strong>、<span class="tag tag-l">長期要件</span>に該当したものとして年金額が計算されます。
+    </div>
+  </div>
+
+  <!-- 受給権者2人以上 -->
+  <div class="card">
+    <div class="card-head">👥 受給権者が2人以上の場合（法60－Ⅱ）</div>
+    <p style="font-size:13px; line-height:1.9;">
+      配偶者以外の者に遺族厚生年金を支給する場合において、受給権者が<strong>2人以上であるとき</strong>は、遺族厚生年金の額は、<strong>受給権者ごとに当該方法により算定した額を受給権者の数で除して得た額</strong>となります。
+    </p>
+    <div class="formula" style="margin-top:10px;">
+      <div class="eq" style="font-size:15px;">各受給権者ごとの計算額 ÷ 受給権者の数</div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ══ Ⅱ 65歳以上配偶者 ══ -->
+  <div class="sec-head">
+    <span class="badge">Ⅱ</span>
+    <h2>老齢厚生年金の受給権者である65歳以上の配偶者に対する額</h2>
+  </div>
+
+  <!-- ❶ 年金額 -->
+  <div class="card">
+    <div class="card-head">💰 ❶ 年金額（法60－Ⅰ②、法附則17の2－Ⅰ）</div>
+    <p style="font-size:13px; line-height:1.9; margin-bottom:10px;">
+      老齢厚生年金の受給権を有する65歳以上の配偶者に対する遺族厚生年金の額は、次の①②のうち<strong style="color:var(--accent);">いずれか多い額</strong>となります。
+    </p>
+    <div class="amt-wrap">
+      <div class="amt-item">
+        <div class="alabel">① Ⅰの原則としての額</div>
+        報酬比例部分の額 × 3/4
+      </div>
+      <div class="amt-vs">↕ いずれか多い額</div>
+      <div class="amt-item">
+        <div class="alabel">② 次の合算額</div>
+        （Ⅰの原則としての額 × 2/3）＋（老齢厚生年金の額 × 1/2）<br>
+        <small style="color:var(--sub);">※老齢厚生年金の額：加給年金額が加算される場合には、これを含めない額</small>
+      </div>
+    </div>
+
+    <div class="proviso" style="margin-top:10px;">
+      <strong>⚠️ ただし書き（法60－Ⅰただし書）：</strong><br>
+      遺族厚生年金の受給権者が、<strong>当該遺族厚生年金と同一の支給事由に基づく遺族基礎年金の支給を受けるとき</strong>は、Ⅰの原則としての額とされます（②は適用されません）。
+    </div>
+
+    <div class="note" style="margin-top:10px;">
+      <strong>💡 イメージ（死亡者＝夫、配偶者＝妻の場合）：</strong><br>
+      「原則としての額×2/3」とは「死亡した夫の老齢厚生年金×1/2（＝夫の老齢厚生年金×3/4×2/3）」のことです。<br>
+      すなわち②は、「死亡した夫の標準報酬や被保険者期間で計算された老齢厚生年金の1/2」と「妻自身の標準報酬や被保険者期間で計算された老齢厚生年金の1/2」をそれぞれ合算した額であり、①の原則としての額よりも高くなる場合にこちらが遺族厚生年金の額となります。<br>
+      ※これは<strong>「遺族厚生年金の額」の計算</strong>において妻自身の標準報酬や被保険者期間を半分反映するということであり、<strong>老齢厚生年金と遺族厚生年金を併給しているという意味ではありません</strong>。
+    </div>
+  </div>
+
+  <!-- ❷ 実際の支給額 -->
+  <div class="card">
+    <div class="card-head">💳 ❷ 実際の支給額（法64の2）</div>
+    <p style="font-size:13px; line-height:1.9; margin-bottom:10px;">
+      老齢厚生年金の受給権を有する65歳以上の遺族厚生年金の受給権者については、<strong>老齢厚生年金が全額支給</strong>され、遺族厚生年金については<strong>当該老齢厚生年金に相当する額が支給停止</strong>されます。<br>
+      このため、実際には次のいずれか多い額が遺族厚生年金として支給されることになります。
+    </p>
+    <div class="amt-wrap">
+      <div class="amt-item">
+        <div class="alabel">① Ⅰの原則としての額から老齢厚生年金の額を控除した額</div>
+        （原則としての額）－（老齢厚生年金の額）
+      </div>
+      <div class="amt-vs">↕ いずれか多い額</div>
+      <div class="amt-item">
+        <div class="alabel">② 合算額から老齢厚生年金の額を控除した額</div>
+        （原則としての額×2/3 ＋ 老齢厚生年金の額×1/2）－（老齢厚生年金の額）<br>
+        <small style="color:var(--sub);">※老齢厚生年金の額：加給年金額が加算される場合には、これを含めない額</small>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- ══ Ⅲ 年金額の改定 ══ -->
+  <div class="sec-head">
+    <span class="badge">Ⅲ</span>
+    <h2>年金額の改定（法61）</h2>
+  </div>
+
+  <div class="card">
+    <ul class="ref-list">
+      <li>
+        <span class="tag tag-s">① 配偶者以外の者に支給される場合（法61－Ⅰ）</span><br>
+        受給権者の数に<strong>増減を生じたとき</strong>は、増減を生じた月の<strong>翌月</strong>から年金額が改定されます。
+      </li>
+      <li>
+        <span class="tag tag-sp">② 配偶者に支給される場合（法61－ⅡⅢ、法附則17の3）</span><br>
+        Ⅰ「原則としての額」により計算した額が支給されているものについては、受給権者が<strong>65歳に達した日以後に老齢厚生年金の受給権を取得した日</strong>（繰上げ支給の老齢厚生年金の受給権を有する者にあっては、<strong>65歳に達した日</strong>）において、Ⅱにより計算した額がⅠの額を上回るときは、当該老齢厚生年金の受給権を取得した日の属する月の<strong>翌月</strong>から、年金額がⅡに改定されます。
+        <div class="note" style="margin-top:10px; font-size:12.5px;">
+          <strong>在職定時改定・退職改定が行われた場合：</strong><br>
+          遺族厚生年金のうちⅡにより計算した額が支給されているものについては、その額の計算の基礎となる老齢厚生年金の額が<strong>在職定時改定や退職改定により改定されたとき</strong>は、その<strong>改定された月</strong>から遺族厚生年金の年金額が改定されることになります。
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ チェックリスト ══ -->
+  <div class="summary">
+    <h3>📌 試験対策チェックリスト</h3>
+    <ul>
+      <li>受給権者が<strong>同一支給事由</strong>の遺族基礎年金を受けるときは、ⅠまたはⅡにかかわらず<strong>Ⅰの原則としての額</strong></li>
+      <li>原則の額＝報酬比例部分の額 × <strong>3/4</strong></li>
+      <li>短期要件：乗率は<strong>7.125/1000・5.481/1000のみ</strong>、読替なし、<strong>300月最低保障あり</strong></li>
+      <li>長期要件：乗率は生年月日で読替（<strong>7.125～9.5/1000又は5.481～7.308/1000</strong>）、<strong>300月最低保障なし</strong></li>
+      <li>短期・長期両方該当→原則は<strong>短期要件</strong>。請求時に<strong>別段の申出</strong>をした場合に限り長期要件で計算</li>
+      <li>65歳以上配偶者（老齢厚生年金受給権あり）：①原則の額 vs ②原則の額×2/3＋老齢厚生年金の額×1/2 → <strong>多い額</strong></li>
+      <li>ただし<strong>同一支給事由の遺族基礎年金受給中</strong>は①原則の額のみ（②不適用）</li>
+      <li>実際の支給：①②それぞれから<strong>老齢厚生年金の額を控除</strong>した多い額</li>
+      <li>改定（配偶者以外）：増減を生じた月の<strong>翌月</strong></li>
+      <li>改定（配偶者）：老齢受給権取得日の属する月の<strong>翌月</strong>（繰上げは<strong>65歳到達日の属する月の翌月</strong>）</li>
+      <li>Ⅱで支給中→在職定時改定・退職改定による老齢厚生年金の改定があればその<strong>改定された月</strong>から遺族厚生年金も改定</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
